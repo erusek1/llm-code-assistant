@@ -5,12 +5,12 @@ Chat Assistant - Interactive chat interface for the LLM code assistant
 import os
 import re
 import time
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict, Any
 from datetime import datetime
 
-from services.llm_service import LLMService
-from services.file_service import FileService
-from utils.notes_manager import NotesManager
+from llm_code_assistant.services.llm_service import LLMService
+from llm_code_assistant.services.file_service import FileService
+from llm_code_assistant.utils.notes_manager import NotesManager
 
 
 class ChatAssistant:
@@ -361,7 +361,7 @@ class ChatAssistant:
         
         # Analyze the code
         try:
-            from assistant.code_analyzer import CodeAnalyzer
+            from llm_code_assistant.assistant.code_analyzer import CodeAnalyzer
             analyzer = CodeAnalyzer(self.llm_service, self.file_service)
             result = analyzer.analyze_file(file_path)
             
@@ -410,7 +410,7 @@ class ChatAssistant:
         
         try:
             # First analyze the file
-            from assistant.code_analyzer import CodeAnalyzer
+            from llm_code_assistant.assistant.code_analyzer import CodeAnalyzer
             analyzer = CodeAnalyzer(self.llm_service, self.file_service)
             analysis_result = analyzer.analyze_file(file_path)
             
@@ -419,7 +419,7 @@ class ChatAssistant:
             print(analysis_result)
             
             # Generate fixes
-            from assistant.code_fixer import CodeFixer
+            from llm_code_assistant.assistant.code_fixer import CodeFixer
             fixer = CodeFixer(self.llm_service, self.file_service)
             fixes = fixer.generate_fixes(file_path, analysis_result)
             
