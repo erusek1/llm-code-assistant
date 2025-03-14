@@ -6,8 +6,8 @@ import os
 from typing import Dict, List, Optional
 from pathlib import Path
 
-from services.llm_service import LLMService
-from services.file_service import FileService
+from llm_code_assistant.services.llm_service import LLMService
+from llm_code_assistant.services.file_service import FileService
 
 
 class CodeAnalyzer:
