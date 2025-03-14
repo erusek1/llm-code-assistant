@@ -6,6 +6,8 @@ import json
 import requests
 from typing import List, Tuple, Dict, Optional, Any
 
+from llm_code_assistant.utils.prompt_builder import PromptBuilder
+
 
 class LLMService:
     """Service for interacting with Ollama LLM API."""
@@ -21,6 +23,7 @@ class LLMService:
         self.endpoint = endpoint or "http://localhost:11434"
         self.model = model or "codellama:34b"
         self.headers = {"Content-Type": "application/json"}
+        self.prompt_builder = PromptBuilder()
     
     def analyze_code(self, code: str, language: str) -> str:
         """
@@ -33,10 +36,7 @@ class LLMService:
         Returns:
             Analysis results as a string
         """
-        from utils.prompt_builder import PromptBuilder
-        
-        prompt_builder = PromptBuilder()
-        prompt = prompt_builder.build_analysis_prompt(code, language)
+        prompt = self.prompt_builder.build_analysis_prompt(code, language)
         return self.send_request(prompt)
     
     def generate_fixes(self, code: str, issues: str, language: str) -> str:
@@ -51,10 +51,7 @@ class LLMService:
         Returns:
             Fixed code as a string
         """
-        from utils.prompt_builder import PromptBuilder
-        
-        prompt_builder = PromptBuilder()
-        prompt = prompt_builder.build_fix_prompt(code, issues, language)
+        prompt = self.prompt_builder.build_fix_prompt(code, issues, language)
         return self.send_request(prompt)
     
     def generate_code(self, description: str, language: str) -> str:
@@ -68,10 +65,7 @@ class LLMService:
         Returns:
             Generated code as a string
         """
-        from utils.prompt_builder import PromptBuilder
-        
-        prompt_builder = PromptBuilder()
-        prompt = prompt_builder.build_generation_prompt(description, language)
+        prompt = self.prompt_builder.build_generation_prompt(description, language)
         return self.send_request(prompt)
     
     def continue_conversation(self, messages: List[Tuple[str, str]], new_message: str = "") -> str:
