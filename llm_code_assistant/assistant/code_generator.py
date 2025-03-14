@@ -7,9 +7,9 @@ import re
 from typing import Dict, List, Tuple, Optional
 from pathlib import Path
 
-from services.llm_service import LLMService
-from services.file_service import FileService
-from utils.prompt_builder import PromptBuilder
+from llm_code_assistant.services.llm_service import LLMService
+from llm_code_assistant.services.file_service import FileService
+from llm_code_assistant.utils.prompt_builder import PromptBuilder
 
 
 class CodeGenerator:
