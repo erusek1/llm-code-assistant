@@ -23,18 +23,19 @@ import sys
 import argparse
 from pathlib import Path
 
-from assistant.code_analyzer import CodeAnalyzer
-from assistant.code_fixer import CodeFixer
-from assistant.code_generator import CodeGenerator
-from assistant.chat_assistant import ChatAssistant
-from services.llm_service import LLMService
-from services.file_service import FileService
-from utils.config import Config
-from utils.notes_manager import NotesManager
+# Update imports to use absolute imports from the package
+from llm_code_assistant.assistant.code_analyzer import CodeAnalyzer
+from llm_code_assistant.assistant.code_fixer import CodeFixer
+from llm_code_assistant.assistant.code_generator import CodeGenerator
+from llm_code_assistant.assistant.chat_assistant import ChatAssistant
+from llm_code_assistant.services.llm_service import LLMService
+from llm_code_assistant.services.file_service import FileService
+from llm_code_assistant.utils.config import Config
+from llm_code_assistant.utils.notes_manager import NotesManager
 
 # Check for GUI dependencies and import conditionally
 try:
-    from ui.app import Application
+    from llm_code_assistant.ui.app import Application
     GUI_AVAILABLE = True
 except ImportError:
     GUI_AVAILABLE = False
